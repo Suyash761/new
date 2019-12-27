@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>Spring-MVC</display-name>
+  <welcome-file-list>
+    <welcome-file>HomePage.jsp</welcome-file>
+  </welcome-file-list>
+  <!-- to use spring MVC,we need to configure a readymade Servlet by name DispathcherServlet.
+  DispatcherServlet play a role of front controller in our application.
+  Additionally,this DispatcherServlet will automatically create
+  spring's ApplicationContext object,so we do not need to write this code anymore:
+  
+  		ApplicationContext ctx = new ClassPathXmlApplicationContext("AppConfig.xml");
+   -->
+  <servlet>
+      <servlet-name>mvc</servlet-name>
+      <servlet-class>
+         org.springframework.web.servlet.DispatcherServlet
+      </servlet-class>
+      <init-param>
+      	<param-name>contextConfigLocation</param-name>
+      	<param-value>/WEB-INF/AppConfig.xml</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+
+   <servlet-mapping>
+      <servlet-name>mvc</servlet-name>
+      <url-pattern>*.lti</url-pattern>
+   </servlet-mapping>
+</web-app>
