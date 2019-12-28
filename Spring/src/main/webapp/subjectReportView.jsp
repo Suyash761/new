@@ -26,6 +26,9 @@
 <form action="reportsubjectoption.lti" method="post">
 <button type="submit" value='6' name="link">.NET</button><br/><br/>
 </form>
+<form action="studentDashboard.lti">
+<button type="submit" name="exit">EXIT</button>
+</form>
 </div>
 </body>
 </html>

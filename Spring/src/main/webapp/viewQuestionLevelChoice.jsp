@@ -7,13 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="level.lti">
+<form action="adminLevelView.lti">
 <button type="submit" value='1' name="setlevel">Level 1</button>
 </form>
-<form action="level.lti">
+<form action="adminLevelView.lti">
 <button type="submit" value='2' name="setlevel">Level 2</button>
 </form>
-<form action="level.lti">
+<form action="adminLevelView.lti">
 <button type="submit" value='3' name="setlevel">Level 3</button>
 </form>
 <form action="adminDashboard.lti">

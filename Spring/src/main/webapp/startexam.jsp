@@ -11,6 +11,10 @@
 <form action="examlevel1.lti" method="post">
 <button type="submit" >Start Exam</button>
 </form>
+<br/><br/>
+<form action="studentDashboard.lti">
+<button type="submit" name="exit">EXIT</button>
+</form>
 </div>
 </body>
 </html>

@@ -26,11 +26,11 @@ public class StudentController {
 	
 	@RequestMapping(path="/login.lti",method=RequestMethod.POST)
 	public String login(@RequestParam("email") String email,
-			@RequestParam("password") String password,ModelMap model, HttpSession session) {
+			@RequestParam("password") String password,ModelMap model) {
 			
 		
 		try {
-			session.invalidate();
+			
 			Student student=studentService.login(email, password);
 			
 			model.put("loggedInUser",student);
@@ -49,6 +49,16 @@ public class StudentController {
 		System.out.println("control");
 		studentService.add(student);
 		return "Login.jsp";
+	}
+	@RequestMapping(path="/studentDashboard.lti")
+	public String stuDashboard(HttpSession session) {
+		session.invalidate();
+		 return "studentDashboard.jsp";
+	}
+	@RequestMapping(path="/adminDashboard.lti")
+	public String adDashboard(HttpSession session) {
+		session.invalidate();
+		 return "adminDashboard.jsp";
 	}
 }
 

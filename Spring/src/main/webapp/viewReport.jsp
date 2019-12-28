@@ -17,8 +17,15 @@
 		<td>Level 3 score : ${repo.level3score }</td>
 	</c:forEach>
 </table>
-<form action="Login.jsp">
-<button type="submit" name="exit">Exit</button>
+<c:if test="${dummy==null}">
+<form action="studentDashboard.lti">
+<button type="submit" name="exit">Exit to Student Dashboard</button>
 </form>
+</c:if>
+<c:if test="${dummy==1}">
+<form action="adminDashboard.lti">
+<button type="submit" name="exit">Exit to Admin Dashboard</button>
+</form>
+</c:if>
 </body>
 </html>

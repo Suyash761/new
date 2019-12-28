@@ -3,6 +3,8 @@ package com.lti.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +43,10 @@ public class StudentExamService {
 		
 		return(studentexamrepo.viewstudentreports(id,subid));
 	}
-//	public List<Student> viewallstudent() {
-//		return(studentexamrepo.viewallstudent());
-//	}
+	public List<Student> viewallstudent() {
+		return(studentexamrepo.viewallstudent());
+	}
+	public Student getstudent(int id) {
+		return(studentexamrepo.getstudent(id));
+	}
 }

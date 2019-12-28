@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,7 +23,7 @@ import com.lti.service.ExamService;
 import com.lti.service.StudentExamService;
 
 @Controller
-@SessionAttributes({"reportsubjectchoice","subjectchoice","questionslevel1","qnol1","counterlevel1","questionslevel2","qnol2","counterlevel2","questionslevel3","qnol3","counterlevel3","loggedInUser"})
+@SessionAttributes({"dummy","reportsubjectchoice","subjectchoice","questionslevel1","qnol1","counterlevel1","questionslevel2","qnol2","counterlevel2","questionslevel3","qnol3","counterlevel3","loggedInUser"})
 public class StudentExamController {
 	
 	@Autowired
@@ -221,7 +223,7 @@ public class StudentExamController {
 			  }
 //*********************************************************************************************************************			  
 			  @RequestMapping(path="/Report.lti", method = RequestMethod.POST)
-			  public String addreport(ModelMap model) {
+			  public String addreport(ModelMap model, HttpSession session) {
 				  int subid= Integer.parseInt((model.get("subjectchoice").toString()));
 				  Integer count1 = (Integer) model.get("counterlevel1");
 				  Integer count2 = (Integer) model.get("counterlevel2");
@@ -238,7 +240,8 @@ public class StudentExamController {
 					  count3=0;
 				  }
 				  studentexamService.Addstudentreport(student,count1,count2,count3,subid);
-				return "Login.jsp";
+				  
+				return "redirect:studentDashboard.lti";
 				
 			  }
 //***************************************************************************************************************			  
@@ -250,28 +253,47 @@ public class StudentExamController {
 				}
 			  
 			  @RequestMapping(path="/Reportstudent.lti")
-			  public String viewreport(ModelMap model) {
+			  public String viewreport(ModelMap model,HttpSession session) {
 				  int subid= Integer.parseInt((model.get("reportsubjectchoice").toString()));				
 				  Student student = (Student) model.get("loggedInUser");
 				  int id=student.getRegId();
 				 
 				  List<StudentSideReport> report=studentexamService.viewstudentreport(id,subid);
 				  System.out.println(report);
+				  
 				  if(report.isEmpty())
 				  {
 					  return "noRecord.jsp";
 				  }
 				  else
 				  {
+					  
 					  model.put("report", report);
 						return "viewReport.jsp";
 					  				
 				  }
+				  
+				  
+					 
+				
 			  }
 //************************************************************************************************************************
-//			  @RequestMapping(path="/viewallstudent.lti")
-//			  public String viewallstudent() {
-//			  
-//				  List<Student> list=studentexamService.viewallstudent()
-//			  }
+			  @RequestMapping(path="/viewallstudent.lti")
+			  public String viewallstudent(ModelMap model) {
+			  
+				  List<Student> list=studentexamService.viewallstudent();
+				  model.put("studetails", list);
+					return "adminSideResult.jsp";
+			  }
+			  @RequestMapping(path="/studentadminreport.lti")
+			  public String studentadminreport(ModelMap model,@RequestParam("studentId") int id) {
+				  
+				  Student student=studentexamService.getstudent(id);
+				  model.put("loggedInUser",student);
+				  model.put("dummy", 1);
+				  return "subjectReportView.jsp";				  
+			  }
+			  
+			 
 }
+			  

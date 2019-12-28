@@ -82,8 +82,14 @@ public class StudentExamRepo {
 		
 	}
 
-//	public List<Student> viewallstudent() {
-//		Query q=entityManager.createQuery("select s from Student s");
-//		ret
-//	}
+	public List<Student> viewallstudent() {
+		Query q=entityManager.createQuery("select s from Student s");
+		List<Student> list=q.getResultList();
+		return list;
+	}
+	
+	public Student getstudent(int id) {
+		Student student = entityManager.find(Student.class,id);
+		return student;
+	}
 }

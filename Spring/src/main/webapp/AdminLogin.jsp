@@ -18,6 +18,9 @@
 <input type="password" name="password" placeholder="Password" required/><br>
 <button type="submit" value="Submit">Submit</button>	
 </form>
+<form action="HomePage.jsp">
+<button type="submit" name="home">Go to HomePage</button>
+</form>
 </div>
 
 <h3>${ message }</h3>

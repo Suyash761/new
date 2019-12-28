@@ -28,7 +28,7 @@ public class AdminController {
 	public String check(@RequestParam("username") String username, @RequestParam("password") String password, ModelMap model) {
 		try {
 			AdminLogin adminlogin = adminLoginService.login(username,password);
-			//map.put("loggedInAdmin", adminlogin);
+			
 			return "adminDashboard.jsp";
 		} catch (Exception e) {
 			model.put("message", "Invalid credentials");

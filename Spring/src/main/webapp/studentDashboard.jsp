@@ -14,6 +14,9 @@
 <form action="subjectReportView.jsp">
 <button type="submit">view result</button><br/><br/>
 </form>
+<form action="Login.jsp">
+<button type="submit">Log Out</button><br/><br/>
+</form>
 </div>
 </body>
 </html>
